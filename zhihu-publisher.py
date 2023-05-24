@@ -19,7 +19,7 @@ from shutil import copyfile
 ###############################################################################################################
 # GITHUB_REPO_PREFIX = Path("https://raw.githubusercontent.com/`YourUserName`/`YourRepoName`/master/Data/")
 # Your image folder remote link
-GITHUB_REPO_PREFIX = "https://raw.githubusercontent.com/miracleyoo/Markdown4Zhihu/master/Data/"
+GITHUB_REPO_PREFIX = "https://raw.githubusercontent.com/magic3007/Markdown4Zhihu/master/Data/"
 COMPRESS_THRESHOLD = 5e5 # The threshold of compression
 
 # The main function for this program
@@ -34,7 +34,7 @@ def process_for_zhihu():
         print(chatest)
     with open(str(args.input),"r",encoding=args.encoding) as f:
         lines = f.read()
-        lines = image_ops(lines)
+        # lines = image_ops(lines)
         lines = formula_ops(lines)
         lines = table_ops(lines)
         with open(args.input.parent/(args.input.stem+"_for_zhihu.md"), "w+", encoding=args.encoding) as fw:
@@ -86,7 +86,7 @@ def table_ops(_lines):
 def reduce_image_size():
     global image_folder_path
     image_folder_new_path = args.input.parent/(args.input.stem+"_for_zhihu")
-    if not os.path.exists(str(image_folder_new_path)): 
+    if not os.path.exists(str(image_folder_new_path)):
         os.mkdir(str(image_folder_new_path))
     for image_path in [i for i in list(image_folder_path.iterdir()) if not i.name.startswith(".") and i.is_file()]:
         print(image_path)
